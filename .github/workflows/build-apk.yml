@@ -12,9 +12,13 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - uses: android-actions/setup-android@v3
       - name: Install NDK and CMake
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0" "cmake;3.22.1" "ndk;26.1.10909125"
+        run: |
+          SDK_ROOT="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          SDKM=$(ls "$SDK_ROOT"/cmdline-tools/*/bin/sdkmanager | head -n 1)
+          echo "Using $SDKM"
+          yes | "$SDKM" --licenses > /dev/null || true
+          "$SDKM" "platforms;android-35" "build-tools;35.0.0" "cmake;3.22.1" "ndk;26.1.10909125"
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.9
