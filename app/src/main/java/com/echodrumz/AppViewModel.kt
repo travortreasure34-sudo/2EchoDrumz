@@ -189,5 +189,5 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
     // ---------- theme ----------
     fun setTheme(id: String) { themeId = id; storage.themeId = id }
-    fun setCustomHue(h: Float) { customHue = h; storage.customHue = h }
+    fun updateCustomHue(h: Float) { customHue = h; storage.customHue = h }
 }
