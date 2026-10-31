@@ -55,7 +55,7 @@ fun ProjectScreen(vm: AppViewModel) {
             }
         }
         if (vm.themeId == "custom") item {
-            LabeledSlider("Accent", vm.customHue, 0f..359f, "${vm.customHue.toInt()}°") { vm.setCustomHue(it) }
+            LabeledSlider("Accent", vm.customHue, 0f..359f, "${vm.customHue.toInt()}°") { vm.updateCustomHue(it) }
         }
         item {
             Text("Works fully offline. Projects, kits, samples and settings are stored privately on this device. " +
